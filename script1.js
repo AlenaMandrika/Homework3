@@ -49,40 +49,48 @@ function Cat (name, age, view, colour ) {
         return leisure
     };
 
-
     var actions = 0;
     this.bite = function (bite) {
         actions++;
-        console.log(this.view  +  bite  + ' кусається  aaйй ')
+        console.log(this.view  +  bite  + ' кусається  aaйй ');
+        live()
     };
     this.misbehave = function () {
         return actions
     };
-}
-var Angela = new Cat ('Angela', 'one jear', 'animal', 'white');
 
-Angela.eat('рибку');
+    function live () {
+       if (actions >= 10) {
+           console.log('Game OVER!')
+       }
+    }
+}
+var Angela = new Cat ('Angela', 'one Jear', 'animal', 'white');
+
+Angela.eat('');
+Angela.eat('');
+Angela.eat('');
 Angela.eat('');
 console.log('Angela.becomeHealthier',  Angela.becomeHealthier());
 
-Angela.drink('воду');
+Angela.drink('');
 console.log('Angela.rejuvenate',  Angela.rejuvenate());
 
-Angela.sleep('клубочком');
+Angela.sleep('');
 console.log('Angela.secure',  Angela.secure());
 
-Angela.purr('голосно');
+Angela.purr('');
 console.log('Angela.satisfied',  Angela.satisfied());
 
-Angela.walk('на вулиці');
+Angela.walk('');
 console.log('Angela.play',  Angela.play());
 
-Angela.bite('боляче');
-Angela.bite('боляче');
-Angela.bite('боляче');
-Angela.bite('боляче');
-Angela.bite('боляче');
-Angela.bite('боляче');
+Angela.bite('');
+Angela.bite('');
+Angela.bite('');
+Angela.bite('');
+Angela.bite('');
+Angela.bite('');
 console.log('Angela.misbehave', Angela.misbehave());
 
 
