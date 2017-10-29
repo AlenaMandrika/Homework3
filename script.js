@@ -22,32 +22,34 @@ var newArr = arr2.MyMap(function (item, i, arr) {
 console.log(newArr);
 
 
-Array.prototype.MySort = function (arr) {
+Array.prototype.MySort = function (fun) {
+    fun = fun || function sort (a, b) {
+        if (a === b) {
+            return 0
+        } else if (a > b) {
+            return 1
+        } else {
+            return -1
+        }
+    };
+    var num;
     var length = this.length;
     for (var i = 0; i < length - 1; i++) {
-        var min = i;
         for (var j = i + 1; j < length; j++) {
-            if (this[j] < this[min]) {
-                min = j;
+            if (fun(this[i], this[j]) === 1 && i >= 0) {
+                num = this[j];
+                this[j] = this[i];
+                this[i] = num
             }
-            var t = this[min];
-            this[min] = this[i];
-            this[i] = t;
         }
     }
-    return arr
+    return this
 };
-var arr3 = [1, 6, 9, 4, 9, -6, 5, -3];
-arr3.MySort(function (arr) {
-    if (a > b) {
-        return 1
-    }
-    if (a < b) {
-        return -1
-    }
-});
-console.log(arr3);
 
-var arr4 = ['h', 't', 'k', 's', 'a'];
-arr4.MySort();
-console.log(arr4);
+var test = [3, 5, 3, 21, 6, 8, 0];
+var res = test.MySort(function (a, b) {
+    console.log(a, b, b-a);
+    return b-a
+});
+test.MySort();
+
