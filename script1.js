@@ -5,48 +5,72 @@ function Cat (name, age, view, colour ) {
     this.colour = colour || 'colour';
 
     var health = 0;
-    this.eat = function (eat) {
-        health++;
-        console.log(this.name + ' ням-ням ');
-        toHelp('health')
-    };
+    var beauty = 0;
+    var security = 0;
+    var pleasure = 0;
+    var leisure = 0;
+    var actions = 0;
+
     this.becomeHealthier = function () {
-        return health
+        return ' health '+ health + ' \n ' +
+            ' beauty '+ beauty + ' \n ' +
+            ' pleasure '+ pleasure + ' \n ' +
+            ' security ' + security + ' \n ' +
+            ' actions ' + actions + ' \n ' +
+            ' leisure ' + leisure + ' \n '
     };
 
-    var beauty = 0;
+    this.eat = function (eat) {
+        health += 4;
+        beauty += 4;
+        pleasure += 9;
+        security += 0;
+        actions += 0;
+        leisure += 0;
+        console.log(this.name + ' ням-ням ');
+        toHelp('health');
+    };
+
     this.drink = function (beverages) {
-        beauty++;
-        console.log(this.name  + ' мммм ' );
+        health += 2;
+        beauty += 4;
+        pleasure += 5;
+        security += 0;
+        actions += 0;
+        leisure += 0;
+        console.log(this.name + ' мммм ');
         toHelp('beauty')
     };
-    this.rejuvenate = function () {
-        return beauty
-    };
 
-    var security = 0;
     this.sleep = function (hause) {
-        security++;
-        console.log(this.name  + ' шшшшшшш ');
+        health += 2;
+        beauty += 2;
+        pleasure += 0;
+        security += 1;
+        actions += 0;
+        leisure += 0;
+        console.log(this.name + ' шшшшшшш ');
         toHelp('security')
     };
-    this.secure = function () {
-        return security
-    };
 
-    var pleasure = 0;
     this.purr = function (mur) {
-        pleasure++;
+        health += 1;
+        beauty += 1;
+        pleasure += 9;
+        security += 0;
+        actions += 0;
+        leisure += 0;
         console.log(this.colour + this.view + this.name + ' мрррр ');
         toHelp('pleasure')
     };
-    this.satisfied = function () {
-        return pleasure
-    };
 
-    var leisure = 0;
     this.walk = function (walk) {
-        leisure++;
+        health += 5;
+        beauty += 5;
+        pleasure += 9;
+        security += 0;
+        actions += 0;
+        leisure += 1;
         console.log(this.name + ' гуляє ');
         toHelp('leisure')
     };
@@ -54,10 +78,14 @@ function Cat (name, age, view, colour ) {
         return leisure
     };
 
-    var actions = 0;
     this.bite = function (bite) {
-        actions++;
-        console.log(this.view  + ' aaйй ');
+        health -= 10;
+        beauty -= 5;
+        pleasure -= 10;
+        security -= 10;
+        actions += 3;
+        leisure -= 1;
+        console.log(this.view + ' aaйй ');
         live()
     };
     this.misbehave = function () {
@@ -65,21 +93,25 @@ function Cat (name, age, view, colour ) {
     };
 
     this.help = function () {
-       console.log('Angela is an animal who can perform such commands: ' +
-           ' "Angela.eat()" ' +
-           ' "Angela.drink()" ' +
-           ' "Angela.sleep()" ' +
-           ' "Angela.purr()" ' +
-           ' "Angela.walk()" ' +
-           ' "Angela.bite()" '
-       )
+        console.log('Angela is an animal who can perform such commands: ' + ' \n ' +
+            ' "Angela.eat()" ' + ' \n ' +
+            ' "Angela.drink()" ' + ' \n ' +
+            ' "Angela.sleep()" ' + ' \n ' +
+            ' "Angela.purr()" ' + ' \n ' +
+            ' "Angela.walk()" ' + ' \n ' +
+            ' "Angela.bite()" ' + ' \n ' + ' as well as to find out the parameters of the lifestyles to call the team: ' + ' \n ' +
+            ' "Angela.becomeHealthier()" ' + ' \n ' +
+            ' and in this function on what does life depend: ' + ' \n ' +
+            ' live() '
+        )
     };
-    function toHelp (param) {
+
+    function toHelp(param) {
         if (param === 'health') {
             if (health <= 5) {
                 console.log('я голодна')
             } else {
-                console.log('досить, пити')
+                console.log('досить, пити');
             }
         }
         if (param === 'beauty') {
@@ -111,14 +143,21 @@ function Cat (name, age, view, colour ) {
             }
         }
     }
-    function live () {
-       if (actions >= 5) {
-           console.log('Game OVER!')
-       }
+
+    function live() {
+        if (actions >= 5) {
+            console.log('Game OVER!')
+        }
+        if (health <= 0) {
+            console.log('GAME OVER!')
+        }
+        if (security <= 0) {
+            console.log('GAME OVER!')
+        }
     }
 }
+
 var Angela = new Cat ('Angela', 'one Jear', 'animal', 'white');
 Angela.help();
-
 
 
