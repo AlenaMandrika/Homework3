@@ -39,18 +39,19 @@ function Cat (name, age, view, colour ) {
         actions += 0;
         leisure += 0;
         console.log(this.name + ' мммм ');
-        toHelp('beauty')
+        toHelp('beauty');
     };
 
     this.sleep = function (hause) {
         health += 2;
         beauty += 2;
         pleasure += 0;
-        security += 1;
+        security += 4;
         actions += 0;
         leisure += 0;
         console.log(this.name + ' шшшшшшш ');
-        toHelp('security')
+        setTimeout(alert('Вже поспала )))'), 10000);
+        toHelp('security');
     };
 
     this.purr = function (mur) {
@@ -83,7 +84,7 @@ function Cat (name, age, view, colour ) {
         beauty -= 5;
         pleasure -= 10;
         security -= 10;
-        actions += 3;
+        actions += 5;
         leisure -= 1;
         console.log(this.view + ' aaйй ');
         live()
@@ -146,15 +147,15 @@ function Cat (name, age, view, colour ) {
 
     function live() {
         if (actions >= 5) {
-            console.log('Game OVER!')
+            setTimeout(alert('Game OVER!'), 3000);
+            console.clear()
         }
-        if (health <= 0) {
-            console.log('GAME OVER!')
-        }
-        if (security <= 0) {
-            console.log('GAME OVER!')
+        if (health <= 0 && security <= 0) {
+            setTimeout(alert('Game OVER!'), 3000);
+            console.clear()
         }
     }
+
 }
 
 var Angela = new Cat ('Angela', 'one Jear', 'animal', 'white');
