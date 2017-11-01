@@ -11,7 +11,22 @@ function Cat (name, age, view, colour ) {
     var leisure = 0;
     var actions = 0;
 
-    this.becomeHealthier = function () {
+    this.eat = function (eat) {
+        health += 4;
+        beauty += 4;
+        pleasure += 9;
+        security += 2;
+        actions += 0;
+        leisure += 0;
+        console.log(this.name + ' ням-ням ');
+
+        toHelp('health');
+
+        if (Math.random()*10 > 5) {
+            alert('tasty dinner x 2 to pleasure');
+            pleasure += 9;
+        }
+
         return ' health '+ health + ' \n ' +
             ' beauty '+ beauty + ' \n ' +
             ' pleasure '+ pleasure + ' \n ' +
@@ -20,26 +35,28 @@ function Cat (name, age, view, colour ) {
             ' leisure ' + leisure + ' \n '
     };
 
-    this.eat = function (eat) {
-        health += 4;
-        beauty += 4;
-        pleasure += 9;
-        security += 0;
-        actions += 0;
-        leisure += 0;
-        console.log(this.name + ' ням-ням ');
-        toHelp('health');
-    };
-
     this.drink = function (beverages) {
         health += 2;
         beauty += 4;
         pleasure += 5;
-        security += 0;
+        security += 2;
         actions += 0;
         leisure += 0;
         console.log(this.name + ' мммм ');
+
         toHelp('beauty');
+
+        if (Math.random()*10 > 5) {
+            alert('tasty dinner x 3 to beauty');
+            beauty += 4;
+        }
+
+        return ' health '+ health + ' \n ' +
+            ' beauty '+ beauty + ' \n ' +
+            ' pleasure '+ pleasure + ' \n ' +
+            ' security ' + security + ' \n ' +
+            ' actions ' + actions + ' \n ' +
+            ' leisure ' + leisure + ' \n '
     };
 
     this.sleep = function (hause) {
@@ -50,8 +67,30 @@ function Cat (name, age, view, colour ) {
         actions += 0;
         leisure += 0;
         console.log(this.name + ' шшшшшшш ');
+
         setTimeout(alert('Вже поспала )))'), 10000);
+
         toHelp('security');
+
+        if (Math.random()*10 > 5) {
+            alert('fell asleep and did not wake up');
+            health = 0;
+            beauty = 0;
+            pleasure = 0;
+            security = 0;
+            actions = 0;
+            leisure = 0;
+
+        }
+
+        live ();
+
+        return ' health '+ health + ' \n ' +
+            ' beauty '+ beauty + ' \n ' +
+            ' pleasure '+ pleasure + ' \n ' +
+            ' security ' + security + ' \n ' +
+            ' actions ' + actions + ' \n ' +
+            ' leisure ' + leisure + ' \n '
     };
 
     this.purr = function (mur) {
@@ -62,35 +101,65 @@ function Cat (name, age, view, colour ) {
         actions += 0;
         leisure += 0;
         console.log(this.colour + this.view + this.name + ' мрррр ');
-        toHelp('pleasure')
+
+        toHelp('pleasure');
+
+        return ' health '+ health + ' \n ' +
+            ' beauty '+ beauty + ' \n ' +
+            ' pleasure '+ pleasure + ' \n ' +
+            ' security ' + security + ' \n ' +
+            ' actions ' + actions + ' \n ' +
+            ' leisure ' + leisure + ' \n '
     };
 
     this.walk = function (walk) {
         health += 5;
         beauty += 5;
         pleasure += 9;
-        security += 0;
+        security += 1;
         actions += 0;
         leisure += 1;
         console.log(this.name + ' гуляє ');
-        toHelp('leisure')
-    };
-    this.play = function () {
-        return leisure
+
+        toHelp('leisure');
+
+        if (Math.random()*10 > 5) {
+            alert('abducted = 0 security');
+            security = 0;
+        }
+
+        live ();
+
+        return ' health '+ health + ' \n ' +
+            ' beauty '+ beauty + ' \n ' +
+            ' pleasure '+ pleasure + ' \n ' +
+            ' security ' + security + ' \n ' +
+            ' actions ' + actions + ' \n ' +
+            ' leisure ' + leisure + ' \n '
     };
 
     this.bite = function (bite) {
-        health -= 10;
+        health += 0;
         beauty -= 5;
         pleasure -= 10;
-        security -= 10;
-        actions += 5;
+        security += 0;
+        actions += 1;
         leisure -= 1;
         console.log(this.view + ' aaйй ');
-        live()
-    };
-    this.misbehave = function () {
-        return actions
+
+        if (Math.random()*10 > 5) {
+            alert('this time I forgive = 0 actions');
+            actions = 0;
+        }
+
+        live ();
+
+        return ' health '+ health + ' \n ' +
+            ' beauty '+ beauty + ' \n ' +
+            ' pleasure '+ pleasure + ' \n ' +
+            ' security ' + security + ' \n ' +
+            ' actions ' + actions + ' \n ' +
+            ' leisure ' + leisure + ' \n '
     };
 
     this.help = function () {
@@ -100,8 +169,7 @@ function Cat (name, age, view, colour ) {
             ' "Angela.sleep()" ' + ' \n ' +
             ' "Angela.purr()" ' + ' \n ' +
             ' "Angela.walk()" ' + ' \n ' +
-            ' "Angela.bite()" ' + ' \n ' + ' as well as to find out the parameters of the lifestyles to call the team: ' + ' \n ' +
-            ' "Angela.becomeHealthier()" ' + ' \n ' +
+            ' "Angela.bite()" ' + ' \n ' +
             ' and in this function on what does life depend: ' + ' \n ' +
             ' live() '
         )
@@ -145,17 +213,20 @@ function Cat (name, age, view, colour ) {
         }
     }
 
-    function live() {
-        if (actions >= 5) {
-            setTimeout(alert('Game OVER!'), 3000);
+    var live = function () {
+        if (actions >= 1) {
+            alert('Game OVER!');
             console.clear()
         }
-        if (health <= 0 && security <= 0) {
-            setTimeout(alert('Game OVER!'), 3000);
+        if (security <= 0) {
+            alert('Game OVER!');
+            console.clear()
+        }
+        if (health <=0) {
+            alert('Game OVER!');
             console.clear()
         }
     }
-
 }
 
 var Angela = new Cat ('Angela', 'one Jear', 'animal', 'white');
